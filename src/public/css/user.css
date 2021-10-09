@@ -1,0 +1,45 @@
+body{
+  background-color: #F3F4F6;
+  width: 100vw;
+}
+
+.cantClick {
+  disabled: true;
+  cursor: default;
+}
+
+.selected {
+  border: 3px solid rgba(59, 130, 246, var(--tw-bg-opacity));
+  box-shadow: 3px 3px 20px #66666629;
+}
+
+.non__selected {
+  border: 2px solid rgba(209, 213, 219, var(--tw-bg-opacity));
+  box-shadow: 3px 3px 20px #66666629;
+}
+
+.submission__button{
+  border: 2px solid rgba(209, 213, 219, var(--tw-bg-opacity));
+  box-shadow: 3px 3px 20px #66666629;
+}
+
+.input__deadline{
+  border: 2px solid #FF0000;
+  box-shadow: 3px 3px 20px #66666629;
+}
+
+.input__deadline__text{
+  color: #FF0000;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-content{
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.modal-close{
+  position: absolute;
+  right: 1.5rem;
+}

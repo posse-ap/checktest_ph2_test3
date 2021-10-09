@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  mysql:
+    build:
+      context: ./db
+    environment:
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+  phpfpm:
+    build:
+      context: ./app
+    volumes:
+      - ./src:/work/backend
+    depends_on: ["mysql"]
