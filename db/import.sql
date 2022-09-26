@@ -110,7 +110,7 @@ CREATE TABLE `salary` (
   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'とりあえずID',
   `employee_id` int NOT NULL COMMENT '従業員ID',
   `year` int NOT NULL COMMENT '年度',
-  `amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '年収',
+  `amount` int NOT NULL COMMENT '年収',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
