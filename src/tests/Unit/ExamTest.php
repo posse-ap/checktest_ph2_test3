@@ -28,7 +28,7 @@ class ExamTest extends TestCase
     public function testCase3()
     {
         $exam = new Exam();
-        $this->assertEquals($exam->Case3(), 989);
+        $this->assertEquals($exam->Case3(), 1196);
     }
 
     public function testCase4()
