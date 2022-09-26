@@ -114,8 +114,8 @@ class Exam
     // 　社員数が一番多い部署の部署名を返却する
     // 　クエリ(SQL)は1文で書く
     // 採点：
-    // 　結果がOK かつ クエリが1文：20点
-    // 　結果がOK かつ クエリが複数：5点 (15点減点)
+    // 　結果がOK：5点
+    // 　＋クエリが1文で書かれている：15点
     public function Case4()
     {
         $db = new PDO('mysql:host=mysql;dbname=laravel;charset=utf8;', 'laravel', 'password');
@@ -133,8 +133,8 @@ class Exam
     // 　2019年から2020年で年収が一番上がった人の名前を返却する
     // 　クエリ(SQL)は1文で書く
     // 採点：
-    // 　結果がOK かつ クエリが1文：10点
-    // 　結果がOK かつ クエリが複数：3点 (7点減点)
+    // 　結果がOK：3点
+    // 　＋クエリが1文で書かれている：7点
     public function Case5()
     {
         $db = new PDO('mysql:host=mysql;dbname=laravel;charset=utf8;', 'laravel', 'password');
