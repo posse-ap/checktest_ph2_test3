@@ -31,7 +31,7 @@ Tests: 6, Assertions: 6, Failures: 5.
 ## テストの実行
 解答用のPHPファイルは以下になります
 ```
-/src/app/Exam.php
+./src/app/Exam.php
 ```
 
 Case1〜Case5 に実装要件が記載されているので
