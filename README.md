@@ -1,19 +1,18 @@
 ## 準備手順
-コンテナを起動してください
+
+以下の手順に従ってチェックテスト用の環境を準備してください
+
 ```
-docker-compose build --no-cache
-docker-compose up -d
+docker compose down
+docker compose build --no-cache
+docker compose up -d
 ```
 
 phpfpmコンテナとmysqlコンテナのCONTAINER IDを確認してください
 ```
 docker ps
 ```
-```
-docker exec -it <mysqlコンテナのID>  /import.sh
-例）docker exec -it 08361d943c93 /import.sh
-※Warningが出ても大丈夫です
-```
+
 ```
 docker exec -it <phpfpmコンテナのID> composer install
 docker exec -it <phpfpmコンテナのID> vendor/bin/phpunit

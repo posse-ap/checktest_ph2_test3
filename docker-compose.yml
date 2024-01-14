@@ -4,6 +4,8 @@ services:
   mysql:
     build:
       context: ./db
+    volumes:
+      - ./db/import.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=laravel
