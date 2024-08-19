@@ -14,6 +14,27 @@ docker ps
 ```
 
 ```
+docker exec -it <mysqlコンテナのID>  /import.sh
+例）docker exec -it 08361d943c93 /import.sh
+※Warningが出ても大丈夫です
+```
+---
+### 注意：以下のようなエラーが出ることがあります
+
+```
+OCI runtime exec failed: exec failed: unable to start container process: exec /import.sh: no such file or directory: unknown
+```
+**その場合は次の順番にコマンドを実行してください**
+```
+1. docker exec -it <mysqlコンテナのID> bash
+例）docker exec -it 08361d943c93 bash
+2. mysql -u root -ppassword laravel < /import.sql
+```
+---
+
+phpfpmコンテナで以下のコマンドを実行してください。
+
+```
 docker exec -it <phpfpmコンテナのID> composer install
 docker exec -it <phpfpmコンテナのID> vendor/bin/phpunit
 例）docker exec -it 07785cc5eb5a composer install
