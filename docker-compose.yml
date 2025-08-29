@@ -1,20 +1,43 @@
-version: "3"
-
 services:
   mysql:
     build:
       context: ./db
-    volumes:
-      - ./db/import.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: checktest-mysql
+    user: "999:999"
     environment:
-      - MYSQL_DATABASE=laravel
-      - MYSQL_USER=laravel
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=password
-    platform: linux/x86_64
-  phpfpm:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./db/import.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-ppassword"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  php:
     build:
       context: ./app
+    container_name: checktest-phpfpm
     volumes:
-      - ./src:/work/backend
-    depends_on: ["mysql"]
+      - ./src:/var/www/html
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  web:
+    image: nginx:1.25-alpine
+    container_name: checktest-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./src:/var/www/html
+    depends_on:
+      - php
+
+volumes:
+  mysql-data:

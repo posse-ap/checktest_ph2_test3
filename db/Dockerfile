@@ -1,7 +1,6 @@
-FROM mysql:8.0.26
+FROM mysql:8.0.35
 
-COPY ./etc/my.cnf /etc/my.cnf
+# Copy custom MySQL config if present
+COPY ./etc/my.cnf /etc/mysql/conf.d/my.cnf
 
-COPY ./import.sql /
-COPY ./import.sh /
-RUN chmod 755 /import.sh
+# Seed SQL will be mounted via docker-compose to /docker-entrypoint-initdb.d
