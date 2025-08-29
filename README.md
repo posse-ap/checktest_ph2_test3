@@ -3,42 +3,23 @@
 以下の手順に従ってチェックテスト用の環境を準備してください
 
 ```
-docker compose down
+docker compose down -v
 docker compose build --no-cache
 docker compose up -d
 ```
 
-phpfpmコンテナとmysqlコンテナのCONTAINER IDを確認してください
-```
-docker ps
-```
+MySQLは初回起動時に`./db/import.sql`が自動でインポートされます（手動で/import.shを実行する必要はありません）。
 
+コンテナの一覧は以下で確認できます。
 ```
-docker exec -it <mysqlコンテナのID>  /import.sh
-例）docker exec -it 08361d943c93 /import.sh
-※Warningが出ても大丈夫です
+docker ps --format 'table {{.Names}}\t{{.Status}}'
 ```
----
-### 注意：以下のようなエラーが出ることがあります
-
-```
-OCI runtime exec failed: exec failed: unable to start container process: exec /import.sh: no such file or directory: unknown
-```
-**その場合は次の順番にコマンドを実行してください**
-```
-1. docker exec -it <mysqlコンテナのID> bash
-例）docker exec -it 08361d943c93 bash
-2. mysql -u root -ppassword laravel < /import.sql
-```
----
 
 phpfpmコンテナで以下のコマンドを実行してください。
 
 ```
-docker exec -it <phpfpmコンテナのID> composer install
-docker exec -it <phpfpmコンテナのID> vendor/bin/phpunit
-例）docker exec -it 07785cc5eb5a composer install
-例）docker exec -it 07785cc5eb5a vendor/bin/phpunit
+docker exec -it checktest-phpfpm composer install
+docker exec -it checktest-phpfpm vendor/bin/phpunit
 ```
 
 コマンド実行後に
